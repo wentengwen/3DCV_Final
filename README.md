@@ -77,6 +77,7 @@ If you wish to use XMem for segmentation to obtain object masks by yourself, ple
 ## XMem
 ## Environment
 You need to create another environment to run XMem.
+
 1.Install package
 ```bash
 cd XMem
