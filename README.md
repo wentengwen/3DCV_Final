@@ -56,6 +56,7 @@ bash download_loftr.sh
 ## How to Run
 1. Run 3D reconstruction for RGBD video.
 ```bash
+# inside docker container
 cd BundleSDF
 python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size] --num_frames [num_frames]
 # Take chair_full data for example.
@@ -64,6 +65,8 @@ python run_custom.py --mode run_video --video_dir ./data/chair_full --out_folder
 ```
 2. Run 3D reconstruction for RGB video.
 ```bash
+# inside docker container
+# need to run `pip install timm` for ZoeDepth model
 python generate_depth.py [video_dir]
 cd BundleSDF
 python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size] --num_frames [num_frames]
@@ -71,6 +74,13 @@ python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [outp
 python generate_depth.py ./data/whitebox_v2
 cd BundleSDF
 python run_custom.py --mode run_video --video_dir ./data/whitebox_v2 --out_folder ./outputs/whitebox_v2 --use_segmenter 1 --use_gui 1 --debug_level 2 --stride 5 --shorter_side 192 --num_frames 540
+```
+The resulting 3D mesh and texture will be stored in `output_dir` like this:
+```
+output_dir
+  ├──textured_mesh.obj (3D mesh)
+  ├──material.mtl      (material file)
+  ├──material_0.png    (texture image)
 ```
 
 If you wish to use XMem for segmentation to obtain object masks by yourself, please follow the steps below to build XMem and run the following. ****You dont need to install XMem if you use the existing ```masks/``` in each data directory.**

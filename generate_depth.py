@@ -8,7 +8,13 @@ import torch
 from torchvision.transforms import ToTensor
 
 device = torch.device('cuda')
-zoe = torch.hub.load("isl-org/ZoeDepth", "ZoeD_N", pretrained=True).to(device)
+zoe = torch.hub.load("isl-org/ZoeDepth", "ZoeD_N", pretrained=False)
+pretrained_dict = torch.hub.load_state_dict_from_url('https://github.com/isl-org/ZoeDepth/releases/download/v1.0/ZoeD_M12_N.pt', map_location='cpu')
+zoe.load_state_dict(pretrained_dict['model'], strict=False)
+for b in zoe.core.core.pretrained.model.blocks:
+    b.drop_path = torch.nn.Identity()
+zoe = zoe.to(device)
+
 data_dir = sys.argv[1]
 
 mask_dir = os.path.join(data_dir, 'masks')
@@ -26,7 +32,7 @@ for f in os.listdir(mask_dir):
         background = mask
     else:
         background = np.multiply(background, mask)
-quit()
+
 def pil_to_batched_tensor(img):
     return ToTensor()(img).unsqueeze(0)
 
