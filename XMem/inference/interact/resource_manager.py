@@ -44,6 +44,7 @@ class ResourceManager:
         video = config['video']
         self.workspace = config['workspace']
         self.size = config['size']
+        self.mask_size = config['mask_size']
         self.palette = davis_palette
 
         # create temporary workspace if not specified
@@ -116,7 +117,7 @@ class ResourceManager:
                 new_h = (h*self.size//min(w, h))
                 if new_w != w or new_h != h:
                     frame = cv2.resize(frame,dsize=(new_w,new_h),interpolation=cv2.INTER_AREA)
-            cv2.imwrite(path.join(self.image_dir, f'{frame_index:07d}.jpg'), frame)
+            cv2.imwrite(path.join(self.image_dir, f'{frame_index:06d}.jpg'), frame)
             frame_index += 1
             bar.update(frame_index)
         bar.finish()
@@ -144,12 +145,15 @@ class ResourceManager:
         assert 0 <= ti < self.length
         assert isinstance(mask, np.ndarray)
 
+        mask_array = np.array(mask)
+        print(mask_array.shape)
+        print("mask.shape",mask_array.shape)
         mask = Image.fromarray(mask,mode="L")
-        mask = mask.convert('L')
-        new_size = (256, 192)
+        #mask = mask.convert('L')
+        new_size = (int(mask_array.shape[1]/mask_array.shape[0] * self.mask_size), int(self.mask_size))
         resized_mask = mask.resize(new_size, PIL.Image.LANCZOS)
         resized_mask.putpalette(self.palette)
-        resized_mask.save(path.join(self.mask_dir, self.names[ti][1:]+'.png'))
+        resized_mask.save(path.join(self.mask_dir, self.names[ti]+'.png'))
         self.invalidate(ti)
 
         # mask.putpalette(self.palette)

@@ -62,6 +62,8 @@ if __name__ == '__main__':
     parser.add_argument('--no_amp', help='Turn off AMP', action='store_true')
     parser.add_argument('--size', default=480, type=int, 
             help='Resize the shorter side to this size. -1 to use original resolution. ')
+    parser.add_argument('--mask_size', default=192, type=int, 
+            help='Resize the shorter side to this size. -1 to use original resolution. ')
     args = parser.parse_args()
 
     config = vars(args)
