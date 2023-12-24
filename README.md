@@ -76,6 +76,7 @@ python run_custom.py --mode run_video --video_dir ./data/whitebox_v2 --out_folde
 If you wish to use XMem for segmentation to obtain object masks by yourself, please follow the steps below to build XMem and run the following. ****You dont need to install XMem if you use the existing ```masks/``` in each data directory.**
 ## XMem
 ## Environment
+You need to create another environment to run XMem.
 1.Install package
 ```bash
 cd XMem
