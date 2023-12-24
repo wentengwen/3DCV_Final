@@ -92,11 +92,11 @@ bash download_XMem.sh
 1. Run XMem GUI to generate segmentation mask.
 ```bash
 cd XMem
-python interactive_demo.py --video [path to the video] --num_objects 1 --mask_size [width of the mask]
+python interactive_demo.py --video [path to the video] --num_objects 1 --mask_size [height of the mask]
 # Take saber_v2 for example.
 python interactive_demo.py --video ../BundleSDF/data/saber_v2/rgb.mp4 --num_object 1 --mask_size 192
 ```
-Default width of the mask is 192. 
+Default height of the mask is 192. 
 
 2. You can use the GUI to select the target mask in any frame and generate masks for the entire video segment.
 
