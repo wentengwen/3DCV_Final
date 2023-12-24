@@ -23,18 +23,18 @@ bash download_loftr.sh
 1. Run 3D reconstruction for RGBD video.
 ```bash
 cd BundleSDF
-python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size]
+python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size] --num_frames [num_frames]
 # Take chair_full data for example.
 cd BundleSDF
-python run_custom.py --mode run_video --video_dir ./data/chair_full --out_folder ./outputs/chair_full --use_segmenter 1 --use_gui 1 --debug_level 2 --stride 5 --shorter_side 192
+python run_custom.py --mode run_video --video_dir ./data/chair_full --out_folder ./outputs/chair_full --use_segmenter 1 --use_gui 1 --debug_level 2 --stride 5 --shorter_side 192 --num_frames 1829
 ```
 2. Run 3D reconstruction for RGB video.
 ```bash
 python generate_depth.py [video_dir]
 cd BundleSDF
-python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size]
+python run_custom.py --mode run_video --video_dir [video_dir] --out_folder [output_dir] --use_segmenter 1 --use_gui 1 --debug_level 2 --stride [stride] --shorter_side [image_shorter_side_size] --num_frames [num_frames]
 # Take whitebox_v2 data for example.
 python generate_depth.py ./data/whitebox_v2
 cd BundleSDF
-python run_custom.py --mode run_video --video_dir ./data/whitebox_v2 --out_folder ./outputs/whitebox_v2 --use_segmenter 1 --use_gui 1 --debug_level 2 --stride 5 --shorter_side 192
+python run_custom.py --mode run_video --video_dir ./data/whitebox_v2 --out_folder ./outputs/whitebox_v2 --use_segmenter 1 --use_gui 1 --debug_level 2 --stride 5 --shorter_side 192 --num_frames 540
 ```
