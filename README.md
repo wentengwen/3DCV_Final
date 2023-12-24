@@ -12,6 +12,9 @@ cd BundleSDF/docker && bash run_container.sh
 
 # Inside docker container, compile the packages which are machine dependent
 bash build.sh
+# In our computer, we need to reinstall scipy to solve "version `GLIBCXX_3.4.29' not found" error
+pip uninstall scipy
+pip install scipy==1.9
 ```
 ## Data Preparation
 ## Model Download
